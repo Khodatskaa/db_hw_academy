@@ -69,7 +69,7 @@ JOIN Departments D ON G.DepartmentId = D.Id
 JOIN Faculties F ON D.FacultyId = F.Id
 WHERE G.Year = 5;
 
--- Query 11: Display the full names of teachers and lectures that they read (names of disciplines and groups), and select only those lectures given in the audience "B103"
+-- Query 11: Display the full names of teachers and lectures that they read 
 SELECT T.Name AS TeacherName, L.Audience AS LectureRoom, DS.Name AS DisciplineName, G.Name AS GroupName
 FROM Teachers T
 JOIN Lectures L ON T.Id = L.TeacherId

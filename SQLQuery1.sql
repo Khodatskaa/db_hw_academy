@@ -1,0 +1,60 @@
+CREATE DATABASE [db_hw_academy]
+GO
+USE [db_hw_academy]
+GO
+CREATE TABLE Curators (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(MAX) NOT NULL,
+    Surname NVARCHAR(MAX) NOT NULL
+);
+
+CREATE TABLE Departments (
+    Id INT PRIMARY KEY IDENTITY,
+    Financing MONEY DEFAULT 0,
+    Name NVARCHAR(100) NOT NULL UNIQUE,
+    FacultyId INT NOT NULL
+);
+
+CREATE TABLE Faculties (
+    Id INT PRIMARY KEY IDENTITY,
+    Financing MONEY DEFAULT 0,
+    Name NVARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Groups (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(10) NOT NULL UNIQUE,
+    Year INT NOT NULL CHECK (Year BETWEEN 1 AND 5),
+    DepartmentId INT NOT NULL
+);
+
+CREATE TABLE Groups_and_Curators (
+    Id INT PRIMARY KEY IDENTITY,
+    CuratorId INT NOT NULL,
+    GroupId INT NOT NULL
+);
+
+CREATE TABLE Groups_and_Lectures (
+    Id INT PRIMARY KEY IDENTITY,
+    GroupId INT NOT NULL,
+    LectureId INT NOT NULL
+);
+
+CREATE TABLE Lectures (
+    Id INT PRIMARY KEY IDENTITY,
+    Audience NVARCHAR(MAX) NOT NULL,
+    DisciplineId INT NOT NULL,
+    TeacherId INT NOT NULL
+);
+
+CREATE TABLE Disciplines (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Teachers (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(MAX) NOT NULL,
+    Rate MONEY NOT NULL CHECK (Rate > 0),
+    Surname NVARCHAR(MAX) NOT NULL
+);
